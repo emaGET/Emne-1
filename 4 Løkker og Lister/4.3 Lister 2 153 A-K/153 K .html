@@ -1,0 +1,131 @@
+<html>
+
+    <head>
+        <link rel="stylesheet" href="chrome-extension://e5978c7a-ac7f-4b7a-8804-28fe7d77f5a1/app/content-style.css">
+        <title>153 K</title>
+    </head>
+
+    <body>
+
+        <div id="content">
+
+            <svg id="chart" width="500" viewBox="0 0 80 60">
+                <rect width="8" height="70" x="0" y="-10" fill="hsl(240,100%,50%)"></rect>
+                <rect width="8" height="30" x="10" y="30" fill="hsl(213.33333333333334,100%,50%)"></rect>
+                <rect width="8" height="10" x="20" y="50" fill="hsl(186.66666666666669,100%,50%)"></rect>
+                <rect width="8" height="50" x="30" y="10" fill="hsl(160,100%,50%)"></rect>
+                <rect width="8" height="80" x="40" y="-20" fill="hsl(133.33333333333334,100%,50%)"></rect>
+            </svg>
+
+            <br>
+
+            Valgt stolpe: ${chosenBarText}
+
+            <br>
+
+            Verdi:
+            <input type="number" min="1" max="10" oninput="inputValue = this.value">
+                <button>Legg til stolpe</button>
+                <button disabled="">Endre valgt stolpe</button><br>
+                <button disabled="">Fjerne valgt stolpe</button>
+
+        </div>
+
+<script>
+    // model
+    let numbers = [7, 3, 1, 5, 8];
+    let chosenBar = null ; // Variabel for hvilken stolpe som er valgt
+    let inputValue; // Variabel for hva som er skrevet i input-feltet
+    let errorMessage = '';
+
+    // view
+    updateView();
+
+    function updateView() {
+        let chosenBarText = chosenBar ?? '<i>ingen</i>';
+        let disabled = chosenBar == null ? "disabled" : "" ;
+        let svgInnerHtml = '';
+        for (let i = 0; i < numbers.length; i++) {
+            svgInnerHtml += createBar(numbers[i], i + 1);
+        }
+        document.getElementById('content').innerHTML = /*HTML*/`
+            <svg id="chart" width="500" viewBox="0 0 80 60">
+                ${svgInnerHtml}
+            </svg>
+            <br/>
+            Valgt stolpe: ${chosenBarText}
+            <br />
+            Verdi:
+            <input type="number" min="1" max="10" oninput="inputValue = Number(this.value)" />
+            <button onclick="addBar()">Legg til stolpe</button>
+            <button ${disabled} onclick="changeBar()">Endre valgt stolpe</button><br />
+            <button ${disabled} onclick="removeBar()">Fjerne valgt stolpe</button>
+            <div>${errorMessage}</div>
+        `;
+    }
+
+    function createBar(number, barNo) {
+        const width = 8;
+        const spacing = 2;
+        let x = (barNo - 1) * (width + spacing);
+        let height = number * 10;
+        let y = 60 - height;
+        let color = calcColor(1, 10, barNo);
+        let border = barNo == chosenBar ? "black" : "none";
+        return `<rect width="${width}" height="${height}"x="${x}" y="${y}" fill="${color}" stroke="${border}" onclick="selectBar(${barNo})"></rect>`;
+    }
+
+    function selectBar(barNo) {
+        if (chosenBar == barNo) {
+            chosenBar = null ;
+        } else {
+            chosenBar = barNo ;
+        }
+        updateView();
+    }
+
+    function addBar() {
+        if (inputValue < 1 || inputValue > 10) {
+            errorMessage = 'Invalid value';
+        } else {
+            errorMessage = '';
+            numbers.push(inputValue);
+        }
+        updateView();
+    }
+
+
+
+    function changeBar() {
+        if (inputValue < 1 || inputValue > 10) {
+            errorMessage = 'Invalid value';
+        } else {
+            errorMessage = '';
+            numbers[chosenBar - 1] = inputValue;
+        }
+        updateView();
+    }
+
+
+
+    function removeBar() {
+        numbers.splice(chosenBar - 1, 1);
+        chosenBar = null;
+        updateView();
+    }
+
+
+    function calcColor(min, max, val) {
+        var minHue = 240, maxHue = 0;
+        var curPercent = (val - min) / (max - min);
+        var colString = "hsl(" + ((curPercent * (maxHue - minHue)) + minHue) + ",100%,50%)";
+        return colString;
+    }
+
+    // controller (ingenting her ennå)
+
+</script>
+
+</body>
+
+</html>

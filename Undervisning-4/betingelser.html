@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+
+        let userName = '';
+        let password = '';
+
+        let correctPassword = "Bjarne123"
+        let correctUsername = "BjarneNilsen"
+
+        updateView()
+        function updateView(){
+            document.getElementById('app').innerHTML = `
+            username: <input onchange="setUserName(this.value)">
+            <br>
+            password: <input onchange="setPsw(this.value)">
+            <br>
+            <button onclick="login()">Log In</button>
+            `
+        }
+
+        function setUserName(userIntput) {
+            userName = userInput;
+        }
+
+        function logIn() {
+            if(userName == correctUsername) {
+                console.log('Nå kjører')
+            }
+        }
+    </script>
+</body>
+</html>

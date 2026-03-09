@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>121 a</title>
+
+</head>
+
+<body>
+
+    <button onclick="addCircleFromInput()">Legg til sirkel fra input</button>
+    <button onclick="addRectFromInput()">Legg til rektangel fra input</button>
+    <input type="number" id="xVerdi" placeholder="Skriv inn x-verdi" />
+    <input type="number" id="yVerdi" placeholder="Skriv inn y-verdi" />
+    <!-- <input type="text" id="fillFarge" placeholder="background Farge (red, green)" /> -->
+
+    <select id="fillFarge">
+        <option value="red">rød</option>
+        <option value="green">grønn</option>
+        <option value="blue">blå</option>
+        <option value="yellow">gul</option>
+    </select>
+
+    <select id="strokeFarge">
+        <option value="red">rød</option>
+        <option value="green">grønn</option>
+        <option value="blue">blå</option>
+        <option value="yellow">gul</option>
+    </select>
+
+    <br>
+    <br>
+
+    <svg 
+        id="mySvg"
+        width="800" 
+        height="600" 
+        style="background-color: lightgray;">
+    </svg>
+
+    <script>
+
+        function addCircle(x, y, fillFarge, strokeFarge) {
+            document.getElementById("mySvg").innerHTML += /*HTML*/`
+                <circle cx="${x}" cy="${y}" r="40" stroke="${strokeFarge}" stroke-width="4" fill="${fillFarge}" />            
+            `;
+        }
+
+        function addRect(x, y, fillFarge, strokeFarge) {
+            document.getElementById("mySvg").innerHTML += /*HTML*/`
+                <rect x="${x}" y="${y}" width="80" height="60" stroke="${strokeFarge}" stroke-width="4" fill="${fillFarge}" />            
+            `;
+        }
+
+        // function addCircle(y) {
+        //     document.getElementById("mySvg").innerHTML += /*HTML*/`
+        //         <circle cx = "${y}" 
+        // }
+
+        function addCircleFromInput() {
+            const x = document.getElementById("xVerdi").value;
+            const y = document.getElementById("yVerdi").value;
+            const fillFarge = document.getElementById("fillFarge").value;
+            const strokeFarge = document.getElementById("strokeFarge").value;
+            addCircle(x,y,fillFarge,strokeFarge);
+        }
+
+        // function addRectFromInput() {
+        //     const x = document.getElementById("xVerdi").value;
+        //     const y = document.getElementById("yVerdi").value;
+        //     const fillFarge = document.getElementById("fillFarge").value;
+        //     const strokeFarge = document.getElementById("strokeFarge").value;
+        //     addRect(x,y,fillFarge,strokeFarge);
+        // }
+
+    //    function addCircle 50() {   
+    //        let x = 50;
+    //        document.getElementById('mySvg').innerHTML = /*HTML*/`
+    //            <circle cx="${x}" cy="100" r="40" stroke="green" stroke-width="4" fill="yellow" />            
+    //        `;
+    //    }
+
+    //    function addCircle70() {
+    //        let x = 70;
+    //        document.getElementById('mySvg').innerHTML = /*HTML*/`
+    //             <circle cx="${x}" cy="100" r="40" stroke="green" stroke-width="4" fill="yellow" />            
+    //        `;
+    //   } -->
+
+
+    </script>
+
+</body>
+
+</html>

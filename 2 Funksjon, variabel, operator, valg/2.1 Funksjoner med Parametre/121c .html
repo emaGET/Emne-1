@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>121 c</title>
+</head>
+
+<body>
+    <div id="skjema"></div>
+
+    <script>
+
+        // function drawSkjema() {
+        //     document.getElementById("skjema").innerHTML += /*HTML*/`
+        //         <label for="fname">First name:</label><br/>
+        //         <input type="text" id="fname"><br/>
+        //         <label for="lname">Last name:</label><br/>
+        //         <input type="text" id="lname"><br/>            
+        //         `;
+        // }
+
+        // function createTextField(id, labelText) {
+        //     return /*HTML*/`
+        //         <label for="${id}">${labelText}</label><br/>
+        //         <input type="text" id="${id}"><br/>
+        //     `;
+        // }
+
+        function createRangeField(id, labelText) {
+            return /*HTML*/`
+                <label for="${id}">${labelText}</label><br/>
+                <input type="range" min="1" max="100" step="1" id="${id}"><br/>
+            `;
+        }
+
+        // function createNumberField(id, labelText) {
+        //     return /*HTML*/`
+        //         <label for="${id}">${labelText}</label><br/>
+        //         <input type="number" id="${id}"><br/>
+        //     `;
+        // }
+
+        // function createRadio(id, name, labelText) {
+        //     return /*HTML*/`
+        //         <input type = "radio" id = "${id}" name = "${name}">
+        //         <label for = "${id}">${labelText}</label><br/>
+        //     `;
+        // }
+
+        function createInputField(type, id, name, labelText) {
+            let inputName=name ? `name="${name}"` : "";
+            return /*HTML*/`
+                <input type="${type}" id="${id}" ${inputName}>
+                <label for="${id}">${labelText}</label><br/>
+            `;
+        }
+
+        function createLabeledInput(type, id, labelText) {
+            return /*HTML*/`
+                <label for="${id}">${labelText}</label><br/>
+                <input type="${type}" id="${id}"><br/>
+            `;
+        }
+
+        
+
+        function drawSkjema() {
+            document.getElementById("skjema").innerHTML = /*HTML*/`
+
+        <!--  all'inizio di ste righe ci va il simbolo del dollaro, ma js prova a farlo girare lo stesso, e si rompe
+                dollaro {createTextField("fname", "Navn:")}
+                dollaro {createTextField("lname", "Etternavn:")}
+                -->
+
+                ${createLabeledInput("text", "fname", "Navn:")}
+                ${createLabeledInput("text", "lname", "Etternavn:")}
+                ${createRangeField("zero2hundred", "En til hundre:")}
+                ${createLabeledInput("number", "number", "Skriv inn et tall")}
+
+        <!--    stessa situazione del dollarone
+                dollaro {createNumberField("number", "skriv inn et tall")}
+
+                dollaro {createRadio("html", "fav_language", "HTML")}
+                dollaro {createRadio("css", "fav_language", "CSS")}
+                dollaro {createRadio("javascript", "fav_language", "JavaScript")} 
+                
+                -->
+
+                ${createInputField("radio", "html", "favoritt 'språk'", "HTML")}
+                ${createInputField("radio", "css", "favoritt 'språk'", "CSS")}
+                ${createInputField("radio", "javascript", "favoritt 'språk'", "JavaScript")}             
+
+                ${createInputField("checkbox", "vehicle1", "", "I have a bike")}
+                ${createInputField("checkbox", "vehicle2", "", "I have a car")}
+                ${createInputField("checkbox", "vehicle3", "", "I have a boat")}
+                `;
+        }
+
+
+        drawSkjema();
+        
+    </script>
+
+
+
+
+<!-- 
+    <label for="fname">First name:</label><br/>
+    <input type="text" id="fname"><br/>
+    <label for="lname">Last name:</label><br/>
+    <input type="text" id="lname"><br/>
+    <label for="zero2hundred">En til hundre:</label><br/>
+    <input type="range" min="1" max="100" step="1" id="zero2hundred"><br/>
+    <label for="number">Skriv inn et tall:</label><br/>
+    <input type="number" id="number"><br/>
+    <input type="radio" id="html" name="fav_language">
+    <label for="html">HTML</label><br/>
+    <input type="radio" id="css" name="fav_language">
+    <label for="css">CSS</label><br>
+    <input type="radio" id="javascript" name="fav_language">
+    <label for="javascript">JavaScript</label><br/>
+    <input type="checkbox" id="vehicle1">
+    <label for="vehicle1"> I have a bike</label><br/>
+    <input type="checkbox" id="vehicle2">
+    <label for="vehicle2"> I have a car</label><br/>
+    <input type="checkbox" id="vehicle3">
+    <label for="vehicle3"> I have a boat</label><br/> -->
+
+</body>
+
+</html>

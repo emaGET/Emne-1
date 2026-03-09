@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>116 D</title>
+
+    <style>
+        .trafficLight {
+            width: 3rem;
+            height: 10rem;
+            display: flex;
+            flex-direction: column;
+            background-color: black;
+            padding: 1rem;
+            gap: 1rem;
+        }
+
+        .light {
+            background-color: gray;
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="trafficLight" onclick="nextPhase()">
+        <div class="light" id="redLight"></div>
+        <div class="light" id="yellowLight"></div>
+        <div class="light" id="greenLight"></div>
+    </div>
+
+    <script>
+        let phase = 0;
+
+        document.getElementById("redLight").style.backgroundColor = "red";
+        // document.getElementById("yellowLight").style.backgroundColor = "yellow";
+        // document.getElementById("greenLight").style.backgroundColor = "green";
+
+        function nextPhase() {
+            phase++;
+            if (phase > 3) phase = 0;
+
+            if (phase == 0) {
+                document.getElementById("redLight").style.backgroundColor = "red";
+                document.getElementById("yellowLight").style.backgroundColor = "gray";
+                document.getElementById("greenLight").style.backgroundColor = "gray";
+            }
+
+            if (phase == 1) {
+                document.getElementById("redLight").style.backgroundColor = "red";
+                document.getElementById("yellowLight").style.backgroundColor = "yellow";
+                document.getElementById("greenLight").style.backgroundColor = "gray";
+            }
+
+            if (phase == 2) {
+                document.getElementById("redLight").style.backgroundColor = "gray";
+                document.getElementById("yellowLight").style.backgroundColor = "gray";
+                document.getElementById("greenLight").style.backgroundColor = "green";
+            }
+
+            if (phase == 3) {
+                document.getElementById("redLight").style.backgroundColor = "gray";
+                document.getElementById("yellowLight").style.backgroundColor = "yellow";
+                document.getElementById("greenLight").style.backgroundColor = "gray";
+            }
+
+            console.log(phase);
+        }
+
+    </script>
+
+</body>
+</html>

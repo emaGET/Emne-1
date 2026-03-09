@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>121 b</title>
+
+    <style>
+
+        table{
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        th {
+            background-color: #04AA6D;
+            color: white;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div id="table"></div>
+
+    <!-- <table>
+    <tr>
+        <th>Dag</th>
+        <th>Time</th>
+        <th>Minutt</th>
+        <th>Temperatur</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>10</td>
+        <td>0</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>10</td>
+        <td>15</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>10</td>
+        <td>30</td>
+        <td>7</td>
+    </tr>
+</table> -->
+
+    <script>
+
+        function drawTable() {
+
+            document.getElementById("table").innerHTML += /*HTML*/`
+                <table id = "myTable">
+                    ${addRow("th", "Dag", "Time", "Minutt", "Temperatur")}
+                    ${addRow("td", "1", "10", "0", "5")}
+                    ${addRow("td", "1", "10", "15", "6")}
+                    ${addRow("td", "1", "10", "30", "7")}
+                </table>
+            `;
+
+            // document.getElementById("table").innerHTML = /*HTML*/`
+            //     <table id = "myTable">
+            //         <tr>
+            //             <th>Dag</th>
+            //             <th>Time</th>
+            //             <th>Minutt</th>
+            //             <th>Temperatur</th>
+            //         </tr>
+            //         <tr>
+            //             <td>1</td>
+            //             <td>10</td>
+            //             <td>0</td>
+            //             <td>5</td>
+            //         </tr>
+            //         <tr>
+            //             <td>1</td>
+            //             <td>10</td>
+            //             <td>15</td>
+            //             <td>6</td>
+            //         </tr>
+            //         <tr>
+            //             <td>1</td>
+            //             <td>10</td>
+            //             <td>30</td>
+            //             <td>7</td>
+            //         </tr>
+            //     </table>
+            // `;
+        }
+
+        function addRow(cellTag, col1, col2, col3, col4) {
+            return /*HTML*/`
+                <tr>
+                    <${cellTag}>${col1}</${cellTag}>
+                    <${cellTag}>${col2}</${cellTag}>
+                    <${cellTag}>${col3}</${cellTag}>
+                    <${cellTag}>${col4}</${cellTag}>
+                </tr>
+             `;
+        }
+
+        drawTable();
+
+    </script>
+
+</body>
+</html>

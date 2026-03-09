@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Test Suite</title>
+<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.19.4.css">
+
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="https://code.jquery.com/qunit/qunit-2.19.4.js"></script>
+    <script>
+        function describeNumber(n) {
+            if (typeof (n) != 'number') return `${n} er ikke et tall`;
+            let result = '${n} er et ';
+            if (n < 0) {
+                result += 'negativt ';
+            } else {
+                result += 'positivt ';
+            }
+            if (Math.abs(n) % 2 == 0) {
+                result += 'partall ';
+            } else {
+                result += 'oddetall ';
+            }
+            return result;
+        }
+
+        QUnit.test('5', function (assert) {
+            let result = describeNumber(5);
+        });
+
+        QUnit.test('-10', function (assert) {
+            let result = describeNumber(-10);
+        });
+
+        QUnit.test('null', function (assert) {
+            let result = describeNumber(null);
+        });
+    </script>
+</body>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <body>
+    <div id="app">
+                <h3>Mitt skjema</h3>
+                <label for="fname">First Name:</label><br> <input type="text" id="fname"><br>
+                <label for="lname">Last Name:</label><br> <input type="text" id="lname"><br>
+                <hr>
+                <label for="zero2hundred">En til hundre:</label><br> <input type="range" min="1" max="100" step="1" id="zero2hundred"><br>
+                <label for="lname">Skriv inn et tall:</label><br> <input type="number" id="lname"><br>
+                <hr>
+                 <input type="radio" name="fav_language" id="html"><label for="html">HTML</label><br>
+                 <input type="radio" name="fav_language" id="css"><label for="css">CSS</label><br>
+                 <input type="radio" name="fav_language" id="js"><label for="js">JavaScript</label><br>                
+            </div>
+
+    <script>
+        drawForm();
+
+        function drawForm() {
+            document.getElementById('app').innerHTML = /*HTML*/`
+                <h3>Mitt skjema</h3>
+                ${drawField('fname', 'First Name', 'text')}
+                ${drawField('lname', 'Last Name', 'text')}
+                <hr/>
+                ${drawField('zero2hundred', 'En til hundre', 'range')}
+                ${drawField('lname', 'Skriv inn et tall', 'number')}
+                <hr/>
+                ${drawField('html', 'HTML', 'radio', 'fav_language')}
+                ${drawField('css', 'CSS', 'radio', 'fav_language')}
+                ${drawField('js', 'JavaScript', 'radio', 'fav_language')}                
+            `;
+        }
+
+        function drawField(id, label, type, radioGroupName) {
+            const isRadio = type == 'radio';
+            let minMaxStep = type == 'range' ? 'min="1" max="100" step="1"' : '';
+            let breakTag = '<br/>';
+            const colon = isRadio ? '' : ':';
+            let labelTag = `<label for="${id}">${label}${colon}</label>`;
+            let extra = isRadio ? `name="${radioGroupName}"` : minMaxStep;
+            let inputTag = ` <input type="${type}" ${extra} id="${id}">`;
+            let html = isRadio ? inputTag + labelTag + breakTag
+                : labelTag + breakTag + inputTag + breakTag;
+            return html;
+        }
+
+        function ternaryTest1(criteria) {
+            let x;
+            if (criteria) {
+                x = 'A';
+            } else {
+                x = 'B';
+            }
+        }
+
+        function ternaryTest2(criteria) {
+            let x = criteria ? 'A' : 'B';
+        }
+
+        function ternaryTest1b(criteria) {
+            if (criteria) {
+                console.log('A');
+            } else {
+                console.log('B');
+            }
+        }
+
+        function ternaryTest2b(criteria) {
+            console.log(criteria ? 'A' : 'B');
+            // let text = criteria ? 'A' : 'B';
+            // console.log(text);
+        }
+
+    </script>
+
+
+
+
+</body>
+</body>
+</html>

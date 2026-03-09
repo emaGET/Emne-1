@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+
+        //Pause til 11.08
+        //M - dataene våre
+        let isAdult = false; 
+        let wallet = 100;
+        let totalPrice = 0
+        let childTicketPrice = 80;
+        let adultTicketPrice = 120;
+        let isVIP = false;
+        let numberOfTicketsInCart = 0;
+        let userMessage = `Welcome to the ticket system, add age and tickets` 
+        let age = null ;
+
+        //V - view (det grafiske - bruker model til å vise frem)
+        updateView()
+
+        function updateView(){
+
+            document.getElementById('app').innerHTML = /*HTML*/`
+            ${userMessage}
+            <br>
+            Write age of person <input onchange="checkAge(this.value)">
+            <br>
+            VIP<input type='checkbox' onchange="checkVIPstatus(this.checked)">
+            <button onclick="addTicketToCart()">Add ticket to cart</button>            
+            <button onclick="buyTickets()">Buy tickets</button>
+            <br>
+            wallet: ${wallet}
+            total price: ${totalPrice}
+            total number of tickets: ${numberOfTicketsInCart}            
+            ` 
+        }
+
+        //C - controller endrer modellen
+        function buyTickets(){
+            if(hasEnoughFunds()){
+                wallet -= totalPrice;
+                totalPrice = 0;
+                numberOfTicketsInCart = 0;
+                userMessage = 'You bought tickets'
+            }
+            else{
+                 userMessage = 'You cant afford tickets'
+            }
+            updateView();
+        }
+
+        function hasEnoughFunds(){
+            return wallet >= totalPrice;
+        }
+
+        function calculateTotalPrice(ticketPrice){
+            totalPrice += ticketPrice
+        }
+
+        function checkAge(ageValue){
+            age = ageValue;
+            if(age < 18){
+                isAdult = false;
+            }
+            else{
+                isAdult = true;
+            }
+        }
+
+        function addTicketToCart(){
+            
+            if(age == null){
+                userMessage = 'Choose age first';
+                updateView();
+                return;
+            }
+
+            if(isAdult){               
+                calculateTotalPrice(adultTicketPrice)
+            }
+            else{
+                calculateTotalPrice(childTicketPrice)
+            }
+
+            if(isVIP){
+                totalPrice -= 20 ;
+            }
+
+            numberOfTicketsInCart++;
+            updateView();
+        }
+
+        // function checkVIPstatus(vipStatus){
+        //     isVIP = vipStatus;
+        // }
+
+        function checkVIPstatus(vipValue) {
+            isVIP = vipValue;
+        }
+
+    </script>
+
+</body>
+</html>

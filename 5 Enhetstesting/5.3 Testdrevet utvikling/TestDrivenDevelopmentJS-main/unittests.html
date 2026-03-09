@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Test Suite</title>
+<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.19.4.css">
+
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="https://code.jquery.com/qunit/qunit-2.19.4.js"></script>
+    <script src="index.js"></script>
+
+    <script>
+        QUnit.test('cd', function (assert) {
+            // arrange
+            const inputText = 'cd';
+
+            // act
+            const translatedText = convertToRobberLanguage(inputText);
+
+            // assert
+            assert.equal(translatedText, 'cocdod');
+        });
+
+        QUnit.test('cod', function (assert) {
+            // arrange
+            const inputText = 'cod';
+
+            // act
+            const translatedText = convertToRobberLanguage(inputText);
+
+            // assert
+            assert.equal(translatedText, 'cocodod');
+        });
+
+        QUnit.test('Terje', function (assert) {
+            // arrange
+            const inputText = 'Terje';
+
+            // act
+            const translatedText = convertToRobberLanguage(inputText);
+
+            // assert
+            assert.equal(translatedText, 'Toterorjoje');
+        });
+
+        QUnit.test('Det var en gang!', function (assert) {
+            // arrange
+            const inputText = 'Det var en gang!';
+
+            // act
+            const translatedText = convertToRobberLanguage(inputText);
+
+            // assert
+            assert.equal(translatedText, 'Dodetot vovaror enon goganongog!');
+        });
+
+        QUnit.test('GET Academy', function (assert) {
+            // arrange
+            const inputText = 'GET Academy';
+
+            // act
+            const translatedText = convertToRobberLanguage(inputText);
+
+            // assert
+            assert.equal(translatedText, 'GOGETOT Acocadodemomy');
+        });
+
+        
+        QUnit.test('tom tekst', function (assert) {
+            // arrange
+            const inputText = '';
+
+            // act
+            const translatedText = convertToRobberLanguage(inputText);
+
+            // assert
+            assert.equal(translatedText, '');
+        });
+
+        
+        QUnit.test('null', function (assert) {
+            // arrange
+            const inputText = null;
+
+            // act
+            const translatedText = convertToRobberLanguage(inputText);
+
+            // assert
+            assert.equal(translatedText, '');
+        });
+    </script>
+</body>

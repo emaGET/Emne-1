@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>oppgave 151 a-b</title>
+
+</head>
+
+<body>
+    
+  <input type="text" id="tekst" placeholder="Skriv tekst">
+  <input type="number" id="maksLengde" placeholder="Maks lengde">
+
+  <button onclick="gjenta()">gjenta</button>
+
+  <div id="resultat"></div>
+
+  <input type="number" id="startVerdi" placeholder="Startverdi...">
+  <input type="number" id="sluttVerdi" placeholder="Sluttverdi...">
+  <input type="number" id="endring" placeholder="Endring">
+
+  <button onclick="tell()">tell</button>
+
+  <div id="resultat2"></div>
+
+  <script>
+
+    function gjenta() {
+
+      let tekst = document.getElementById("tekst").value;
+      let maks = parseInt(document.getElementById("maksLengde").value);
+
+      while (tekst.length < maks) {
+        tekst += tekst ;
+      }
+
+      document.getElementById("resultat").innerText = tekst;
+      
+    }
+
+    function tell() {
+
+        let startVerdi = Number(document.getElementById("startVerdi").value);
+        let sluttVerdi = Number(document.getElementById("sluttVerdi").value);
+        let endring = Number(document.getElementById("endring").value);
+        let resultat = "";
+
+        if (endring === 0) {
+
+            document.getElementById("resultat2").innerText = "Endring kan ikke være 0  ";
+            return ;
+            
+        }
+
+        if (startVerdi > sluttVerdi && endring > 0) {           //if i*m trying to go downward, an endless loop have to be prevented
+
+            document.getElementById("resultat2").innerText = "Endring må være negatif";
+            return;
+
+        }
+
+        // for (let i = startVerdi; i <= sluttVerdi; i += endring) {       // until i is minor or equal to sluttVerdi, it will keep on adding to endring, until it reaches the number desired.
+        //     resultat += i + " ";
+        // }
+
+        // for (let i = startVerdi; i = startVerdi; i >= sluttVerdi; i += endring) {       // and here we see the loop counting downward: for (let i = 1; i <= 10; i += 2), it will go on until 9, but if we do for (let i = 10; i <= 2; i += -2), it will go fro 10 until 2 and stop. downward, no loop. 
+        //     resultat += i + " ";
+        // }
+
+        if ( startVerdi <= sluttVerdi ) {
+
+          for (let i = startVerdi; i <= sluttVerdi; i += endring) { 
+            resultat += i + " ";
+          }
+
+        }
+
+        if ( startVerdi >= sluttVerdi ) {
+
+          for (let i = startVerdi; i >= sluttVerdi; i += endring) {
+            resultat += i + " ";
+          }
+
+        }
+
+        document.getElementById("resultat2").innerText = resultat;
+
+    }
+
+  </script>
+
+</body>
+</html>

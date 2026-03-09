@@ -1,0 +1,24 @@
+<label>Tekst: <input id="tekst" type="text" value="Hei"></label>
+<label>Maks lengde: <input id="maksLengde" type="number" value="30"></label>
+<button onclick="gjenta()">Gjenta</button>
+
+<div id="resultat"></div>
+
+ <script>
+  function gjenta() {
+    let text = document.getElementById('tekst').value;
+    const maks = Number(document.getElementById('maksLengde').value);
+
+    if (!Number.isFinite(maks) || maks < 0) {
+      document.getElementById('resultat').innerText = 'Ugyldig maks lengde.';
+      return;
+    }
+
+    // Keeps result <= maks (pre-check before doubling)
+    while (text.length * 2 <= maks) {
+      text += text; // text = text + text
+    }
+
+    document.getElementById('resultat').innerText = text;
+  }
+</script>

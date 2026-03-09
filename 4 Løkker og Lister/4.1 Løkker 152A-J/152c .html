@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>151 c</title>
+</head>
+
+<body>
+
+    <div id="app">  </div>
+
+    <script>
+
+        let numbers = [ 1, 2, 5, 7, null, 9, 3, 4, 8];
+
+        function showPuzzle() {
+            let html = "";
+
+            for ( let i = 0 ; i < numbers.length ; i++ ) {
+                let number = numbers[i];
+                // html += `<button>${number}</button>`;            
+                html += `<button onclick = "moveNumber(${i})">${number ?? " "}</button>` ;            
+            }
+
+            // document.getElementById("app").innerHTML = html;
+            document.getElementById("app").innerHTML = `<div style="display: grid; grid-template-columns: 40px 40px 40px; gap: 4px; width: max-content;">${html}</div>`;
+
+
+        }
+
+        function moveNumber(index) {
+            let blankIndex = numbers.indexOf(null);
+            if ( 
+                ( index === blankIndex - 1 && blankIndex % 3 !==0 ) ||
+                ( index === blankIndex + 1 && blankIndex % 3 !==2 ) ||
+                index === blankIndex - 3 ||
+                index === blankIndex + 3
+                ) {
+                numbers [blankIndex] = numbers [index];
+                numbers [index] = null ;
+                showPuzzle();
+            } 
+        }
+
+        showPuzzle();
+
+    </script>
+
+</body>
+</html>
