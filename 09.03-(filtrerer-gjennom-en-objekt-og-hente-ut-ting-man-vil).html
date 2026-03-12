@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Filmfilter</title>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+
+    <script>
+
+        // MODEL
+        const watchList = [
+            { Title: "Inception", Year: "2010", Director: "Christopher Nolan", Genre: "Action, Adventure, Crime", imdbRating: "8.8" },
+            { Title: "Interstellar", Year: "2014", Director: "Christopher Nolan", Genre: "Adventure, Drama, Sci-Fi", imdbRating: "8.6" },
+            { Title: "The Dark Knight", Year: "2008", Director: "Christopher Nolan", Genre: "Action, Adventure, Crime", imdbRating: "9.0" },
+            { Title: "Batman Begins", Year: "2005", Director: "Christopher Nolan", Genre: "Action, Adventure", imdbRating: "8.3" },
+            { Title: "Avatar", Year: "2009", Director: "James Cameron", Genre: "Action, Adventure, Fantasy", imdbRating: "7.9" }
+        ];
+
+        //key:value
+
+        let result = [];
+        let userInput = ""
+
+
+
+        // VIEW
+        function updateView() {
+            document.getElementById("app").innerHTML = /*HTML*/`
+                <h1>Filmer</h1>
+                <input id="input" oninput="userInput=this.value" placeholder="Skriv tittel til filmen">
+                <button onclick="filterMovies()">Finn film</button>
+                <pre id="output">${renderResult()}</pre>
+            `
+            // Vis alle titlene i result i output
+        }
+
+        function renderResult() {
+            let html = ""
+            for (let i = 0; i < result.length; i++) {
+                html += /*HTML*/`
+                <h1>${result[i].Title}<h1>
+                <h2>År ${result[i].Year}</h2>
+                <p>Director ${result[i].Director}</p>
+                    `
+            }
+            return html
+        }
+
+
+        // CONTROLLER
+        function filterMovies() {
+            for (let i = 0; i < watchList.length; i++) {
+                if (watchList[i].Title == userInput) {
+                    result.push(watchList[i])
+                }
+            }
+            updateView()
+        }
+
+        updateView()
+
+    </script>
+
+</body>
+
+</html>
