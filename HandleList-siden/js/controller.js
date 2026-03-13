@@ -45,3 +45,20 @@ function revomefromlist(id) {
     model.viewState.selectedItemId = null;
     updateView();
 }
+
+// function selectItem(id) {
+//     selectedId = id;
+//     updateView();
+// }
+
+// function addTocList() {
+//     let newItem = {
+//         id: nextId,
+//         text: inputValue,
+//     };
+
+//     toDoList.push(newItem);
+//     nextId++;
+//     inputValue = '';
+//     updateView();
+// }
